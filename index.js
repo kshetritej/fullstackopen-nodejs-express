@@ -1,5 +1,5 @@
 const express = require('express')
-const app = express ()
+const app = express()
 
 
 app.use(express.json())
@@ -30,7 +30,7 @@ let persons = [
 const date = new Date()
 
 // root directory (localhost:3001)
-app.get('/', (req, res)=>{
+app.get('/', (req, res) => {
     res.send("<h1> Hello  please visit localhost:3001/api/persons for the list</h1>")
 })
 
@@ -40,16 +40,16 @@ app.get('/api/persons', (req, res) => {
 })
 
 //for displaying info page
-app.get('/info', (req,res) => {
+app.get('/info', (req, res) => {
     res.send(` <p>Phonebook has info for ${persons.length} people <br/> ${date}</p>`)
 })
 
 //For displaying single phonebook entry
-app.get('/api/persons/:id',(req, res) =>{
+app.get('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id)
     const person = persons.find(person => person.id === id)
-    if(person){
-    res.json(person)
+    if (person) {
+        res.json(person)
     }
     res.status(404).end()
 })
@@ -67,10 +67,23 @@ app.post('/api/persons', (req, res) => {
     const body = req.body
 
     const person = {
-        id: Math.floor((Math.random()*10)),
-        name: "Tej",
-        number: "92858285"
+        id: Math.floor((Math.random() * 10)),
+        name: "Hell's Kitchen",
+        number: "080580285"
     }
+    if (!person.name) {
+        return res.status(400).json({
+            error: 'content missing'
+        })
+    }
+    
+    const findName = persons.map(person => person.name)
+    if(findName.includes(person.name)){
+        return res.status(400).json({
+            error: 'name must be unique'
+        })
+    }
+
     persons = persons.concat(person)
     res.json(person)
 })
