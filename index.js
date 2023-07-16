@@ -4,7 +4,10 @@ const app = express()
 
 
 app.use(express.json())
-app.use(morgan('tiny'))
+morgan.token('type', function (req, res) { return JSON.stringify(persons[persons.length -1 ]) })
+
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :type'))
+
 
 let persons = [
     {
