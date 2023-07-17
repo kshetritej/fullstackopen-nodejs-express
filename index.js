@@ -4,6 +4,7 @@ const app = express()
 const cors = require('cors')
 app.use(cors())
 
+app.use(express.static('build'))
 app.use(express.json())
 morgan.token('type', function (req, res) { return JSON.stringify(persons[persons.length -1 ]) })
 
@@ -36,9 +37,9 @@ let persons = [
 const date = new Date()
 
 // root directory (localhost:3001)
-app.get('/', (req, res) => {
-    res.send("<h1> Hello  please visit localhost:3001/api/persons for the list</h1>")
-})
+// app.get('/', (req, res) => {
+//     res.json()
+// })
 
 //for displaying all results
 app.get('/api/persons', (req, res) => {
@@ -94,7 +95,7 @@ app.post('/api/persons', (req, res) => {
     res.json(person)
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`)
 })

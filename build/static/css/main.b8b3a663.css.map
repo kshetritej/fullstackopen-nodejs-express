@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.b8b3a663.css","mappings":"AAAA,KACI,qBACJ,CAEA,GACI,YAEJ,CACA,SACI,qBAAwB,CACxB,UAAY,CACZ,YACJ","sources":["index.css"],"sourcesContent":["body{\n    background-color: aqua;\n}\n\nul{\n    display: flex;\n\n}\n.warning{\n    background-color: yellow;\n    color: black;\n    padding: 1rem;\n}"],"names":[],"sourceRoot":""}
