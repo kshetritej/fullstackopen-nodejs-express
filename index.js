@@ -11,10 +11,11 @@ morgan.token('type', function (req, res) { return JSON.stringify(persons[persons
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :type'))
 
+const persons = [];
 //mongoose definations
 const mongoose = require('mongoose')
 
-const password = process.argv[2]
+const password = 'jagadamba23';
 
 const url = `mongodb+srv://kshetritej:${password}@cluster0.yg8tfaf.mongodb.net/Phonebook?retryWrites=true&w=majority`
 
@@ -27,7 +28,7 @@ const phonebookSchema = new mongoose.Schema({
     number: String,
 })
 
-const Phonebook = mongoose.model('Contact',phonebookSchema)
+const Phonebook = mongoose.model('Phonebook',phonebookSchema)
 
 app.get('/api/persons', (req,res) => {
     Person.find({}).then(person =>{
